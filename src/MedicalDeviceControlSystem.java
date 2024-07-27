@@ -27,6 +27,13 @@ class SensorData {
     }
 }
 
+// Sensor Exception
+class SensorException extends Exception {
+    public SensorException(String message) {
+        super(message);
+    }
+}
+
 // Main Application Class
 public class MedicalDeviceControlSystem {
     public static void main(String[] args) {
