@@ -36,8 +36,24 @@ class SensorException extends Exception {
     }
 }
 
+// Vital Signs Analyzer Class
+class VitalSignsAnalyzer {
+    private static final double MAX_HEART_RATE = 100.0;
+    private static final double MIN_HEART_RATE = 60.0;
+    private static final double MAX_BLOOD_PRESSURE = 140.0;
+    private static final double MIN_BLOOD_PRESSURE = 90.0;
+    private static final double MAX_TEMPERATURE = 38.0;
+    private static final double MIN_TEMPERATURE = 36.0;
+    private static final Logger logger = Logger.getLogger(VitalSignsAnalyzer.class.getName());
+
+
+}
+
+
 // Main Application Class
 public class MedicalDeviceControlSystem {
+
+
     public static void main(String[] args) {
         try {
             int[] sensor = {93, 3,2, };
