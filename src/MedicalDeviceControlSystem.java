@@ -46,7 +46,17 @@ class VitalSignsAnalyzer {
     private static final double MIN_TEMPERATURE = 36.0;
     private static final Logger logger = Logger.getLogger(VitalSignsAnalyzer.class.getName());
 
-
+    public void analyzeAndTriggerAlarms(double heartRate, double bloodPressure, double temperature) {
+        if (heartRate < MIN_HEART_RATE || heartRate > MAX_HEART_RATE) {
+            logger.log(Level.WARNING, "Heart rate out of range: " + heartRate);
+        }
+        if (bloodPressure < MIN_BLOOD_PRESSURE || bloodPressure > MAX_BLOOD_PRESSURE) {
+            logger.log(Level.WARNING, "Blood pressure out of range: " + bloodPressure);
+        }
+        if (temperature < MIN_TEMPERATURE || temperature > MAX_TEMPERATURE) {
+            logger.log(Level.WARNING, "Temperature out of range: " + temperature);
+        }
+    }
 }
 
 
