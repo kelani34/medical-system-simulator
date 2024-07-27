@@ -7,25 +7,27 @@ class SensorData {
     private static final Random random = new Random();
     private static final Logger logger = Logger.getLogger(SensorData.class.getName());
 
-    public static double readHeartRate()  {
+    public static double readHeartRate() throws SensorException {
         return readSensorData("Heart Rate");
     }
 
-    public static double readBloodPressure()  {
+    public static double readBloodPressure() throws SensorException {
         return readSensorData("Blood Pressure");
     }
 
-    public static double readTemperature()  {
+    public static double readTemperature() throws SensorException {
         return readSensorData("Temperature");
     }
 
-    private static double readSensorData(String sensorName) {
+    private static double readSensorData(String sensorName) throws SensorException {
         if (random.nextInt(100) < 10) { // 10% chance of sensor failure
             logger.log(Level.SEVERE, sensorName + " sensor malfunction.");
+            throw new SensorException(sensorName + " sensor malfunction.");
         }
         return 50 + (random.nextDouble() * 100); // random sensor data
     }
 }
+
 
 // Sensor Exception
 class SensorException extends Exception {
