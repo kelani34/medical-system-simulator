@@ -36,7 +36,7 @@ class SensorException extends Exception {
     }
 }
 
-// Vital Signs Analyzer Class
+// Vital Signs Analyzer
 class VitalSignsAnalyzer {
     private static final double MAX_HEART_RATE = 100.0;
     private static final double MIN_HEART_RATE = 60.0;
@@ -62,13 +62,24 @@ class VitalSignsAnalyzer {
 
 // Main Application Class
 public class MedicalDeviceControlSystem {
-
+    private static final Logger logger = Logger.getLogger(MedicalDeviceControlSystem.class.getName());
 
     public static void main(String[] args) {
+        SensorData sensorData = new SensorData();
+        VitalSignsAnalyzer analyzer = new VitalSignsAnalyzer();
+
         try {
-            int[] sensor = {93, 3,2, };
-        } catch (ArithmeticException e) {
-            // Error handling
+            double heartRate = SensorData.readHeartRate();
+            double bloodPressure = SensorData.readBloodPressure();
+            double temperature = SensorData.readTemperature();
+
+            logger.log(Level.INFO, "Heart Rate: " + heartRate);
+            logger.log(Level.INFO, "Blood Pressure: " + bloodPressure);
+            logger.log(Level.INFO, "Temperature: " + temperature);
+
+            analyzer.analyzeAndTriggerAlarms(heartRate, bloodPressure, temperature);
+        } catch (SensorException e) {
+            logger.log(Level.SEVERE, "Sensor error occurred: " + e.getMessage());
         }
     }
 }
